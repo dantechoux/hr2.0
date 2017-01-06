@@ -1,0 +1,195 @@
+1.1返回数据格式说明
+  {
+       "code":0,
+     "msg":"success"
+       "data":{
+        },
+    "configData":{
+    }
+
+  }
+说明：
+code:返回码.0正常-1系统异常1001参数非法，1004参数非法（其他的按接口约定来）
+message:返回消息
+data:返回数据
+configData:配置数据
+1.2全局结果
+1.2.1登录失败
+{"code":1004,"msg":"未认证"}
+
+1.2.2系统异常
+{"code":-1,"msg":"系统异常"}
+
+1.2.3参数非法
+  {"code":1001,"msg":"参数非法"}
+
+
+1.3获取阿里云OSS上传策略接口
+地址是接口程序调用时请求的url地址。
+测试环境：
+图片:http://127.0.0.1:8080/oss/video/sign
+视频:http://127.0.0.1:8080/oss/img/sign
+正式环境：
+图片:http://www.hrfax.cn/oss/video/sign
+视频:http://www.hrfax.cn/oss/img/sign
+
+参数说明：
+描述：
+策略密钥，用户表单上传到阿里云
+返回结果:
+{
+    "code":0,
+    "data":{
+        "accessid":"TasGEcdyW9IADYkk",
+        "signature":"pl9NNB8o99hegvultrhR0uvHmjs=",
+        "host":"http://hrfax.oss-cn-hangzhou.aliyuncs.com",
+        "dir":"",
+       "policy":"eyJleHBpcmF0aW9uIjoiMjAxNy0wMS0wNFQwNjowNjoxMi4yNThaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsMTA0ODU3NjAwMF0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCIiXSxbInN0YXJ0cy13aXRoIiwiJENvbnRlbnQtVHlwZSIsIiJdLHsiYnVja2V0IjoiaHJmYXgifV19"
+    },
+    "msg":"success"
+}
+
+
+1.4征信材料上传
+1.4.1根据机构查询征信人配置和材料
+地址是接口程序调用时请求的url地址，采用的是http 接口。
+测试环境：http://127.0.0.1:8080/creditUser/info
+正式环境：http://www.hrfax.cn/creditUser/info
+参数1：taskId	任务id
+返回结果：
+{
+    "code":0,
+    "data":{
+        "creditUsers":{ //征信用户
+            "0":[	//借款人
+                {
+                    "company":"公司A",
+                    "companyTel":"13334333334",
+                    "idCard":"330621197410036800",
+                    "isDel":0,
+                    "isServe":0,
+                    "loanUserCredit":{ //用户征信
+                        "creditBatchNo":"21341324214",
+                        "creditId":100002,
+                        "creditMaterials":[//征信材料
+                            {
+                                "creditId":100002,
+                                "id":28,
+                                "isDel":0,
+                                "materialsPic":"asdfasf",
+                                "thumnailPic":"sadfsaf"
+                            }
+                        ],
+                        "creditReportId":"AD--2e94ikdj002",
+                        "deptId":82,
+                        "internalCreditInfo":"备注11111",
+                        "orderNo":"nfdb2016102820480799",
+                        "remark":"备注0000000000002",
+                        "userId":990001
+                    },
+                    "mobile":"13334333331",
+                    "orderNo":"nfdb2016102820480799",
+                    "userId":990001,
+                    "userName":"张三",
+                    "userRelationship":0,
+                    "userType":0
+                }
+            ],
+            "1":[//共同还款人
+                {
+                    "company":"公司B",
+                    "companyTel":"13334333335",
+                    "idCard":"330999939393939393",
+                    "isDel":0,
+                    "isServe":0,
+                    "loanUserCredit":{
+                        "creditBatchNo":"21341324214",
+                        "creditId":100003,
+                        "creditMaterials":[
+                            {
+                                "creditId":100003,
+                                "id":29,
+                                "isDel":0,
+                                "materialsPic":"safdasf",
+                                "thumnailPic":"sadfsfs"
+                            }
+                        ],
+                        "creditReportId":"AD--2e94ikdj003",
+                        "deptId":82,
+                        "internalCreditInfo":"备注2222222",
+                        "orderNo":"nfdb2016102820480799",
+                        "remark":"备注0000000000003",
+                        "userId":990002
+                    },
+                    "mobile":"13334333332",
+                    "orderNo":"nfdb2016102820480799",
+                    "userId":990002,
+                    "userName":"李四",
+                    "userRelationship":1,
+                    "userType":1
+                }
+            ],
+            "2":[//反担保人
+                {
+                    "company":"公司C",
+                    "companyTel":"13334333336",
+                    "idCard":"330999939393939394",
+                    "isDel":0,
+                    "isServe":0,
+                    "loanUserCredit":{
+                        "creditBatchNo":"21341324214",
+                        "creditId":100004,
+                        "creditMaterials":[
+                            {
+                                "creditId":100004,
+                                "id":30,
+                                "isDel":0,
+                                "materialsPic":"asdfasf",
+                                "thumnailPic":"sadfasfas"
+                            }
+                        ],
+                        "creditReportId":"AD--2e94ikdj003",
+                        "deptId":82,
+                        "internalCreditInfo":"备注33333333",
+                        "orderNo":"nfdb2016102820480799",
+                        "remark":"备注0000000000004",
+                        "userId":990003
+                    },
+                    "mobile":"13334333333",
+                    "orderNo":"nfdb2016102820480799",
+                    "userId":990003,
+                    "userName":"王五",
+                    "userRelationship":0,
+                    "userType":2
+                }
+            ]
+        }
+    },
+    "msg":"success"
+}
+
+
+1.4.2增加征信人接口
+1.4.3删除征信人接口
+1.4.4征信查询接口
+1.4.5选择银行接口
+
+
+
+
+
+
+
+1.5贷款材料上传
+
+
+
+1.6签约材料上传
+1.6.1首页车贷云单、资产交易订单数据列表
+
+1.6.2车贷云单订单数据列表
+
+1.6.3资产交易订单数据列表
+
+1.6.4首页数据纬度值
+
